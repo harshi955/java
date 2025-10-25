@@ -3,6 +3,7 @@ package test.com;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,9 +23,15 @@ public class LoginServlet extends HttpServlet {
 		String password =request.getParameter("pwd");
 		if(name.equals("admin") && password.equals("12345") ) {
 			out.println("Login successfully");
+//			RequestDispatcher rs=request.getRequestDispatcher("Register.html");
+//			rs.forward(request, response);
+		
+			response.sendRedirect("https://www.youtube.com/");
 		}
 		else {
 			out.println("login failed ...");
+			RequestDispatcher rs=request.getRequestDispatcher("error.html");
+			rs.include(request, response);
 		}
 		
 		
